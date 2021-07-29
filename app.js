@@ -13,6 +13,8 @@ const port = process.env.PORT
 const db = require('./config/config')
 db()
 
+app.use('/productImage' ,express.static('uploads/productImages'))
+app.use('/avatar' ,express.static('uploads/userImages'))
 app.use(express.json());
 app.use(cookieParser());
 
