@@ -8,7 +8,9 @@ const createProduct = async (req , res) => {
     if (error) return res.status(400).send(error.details[0].message)
 
 // saving new product to database and returning the saved product details
-    const product = new Product({...req.body , user: req.user._id})
+    const product = new Product({...req.body , 
+        user: req.user._id , 
+        productImage: `http://localhost:5000/productImage/${req.file.filename}`})
     try {
           const savedProduct = await product.save();
            res.status(200).json({
@@ -64,7 +66,9 @@ const updateProduct = async (req , res) => {
 
     try {
         const product = await Product.findOneAndUpdate({user: userid , _id: req.params.id},
-                {...req.body} , {new: true})
+            {...req.body ,
+             productImage: `http://localhost:5000/productImage/${req.file.filename}`} , 
+            {new: true})
             if (!product) return res.status(400).json({ success: false , msg: `product not found`})
             const updatedProduct = await product.save()
             res.status(200).json({

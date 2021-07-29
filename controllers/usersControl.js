@@ -24,7 +24,8 @@ const signUp = async (req , res) => {
     const hashedPassword= await bcrypt.hash(req.body.password , 12)
 
 // saving user details to database and returning saved details except password
-    const user = new User({ ...req.body , password: hashedPassword})
+    const user = new User({ ...req.body , 
+        password: hashedPassword , avatar: `http://localhost:5000/avatar/${req.file.filename}`})
     try {
             const savedUser = await user.save();
              res.status(200).json({
@@ -66,7 +67,7 @@ try {
 // sending the user details and saving token as cookie on successful signin
     res.cookie('auth_token' , token).json({
         success: true , 
-        msg: `you were successfully login in`,
+        msg: `you were successfully logged in`,
         data: {
             id: user._id,
             firstName: user.firstName,
@@ -105,7 +106,7 @@ const updateInfo = async (req , res ) => {
             businessName: updatedUser.businessName,
             email: updatedUser.email,
             phoneNo: updatedUser.phoneNo,
-            avatar: updatedUser.avatar
+            avatar: `http://localhost:5000/avatar/${req.file.filename}`
         }
         })
     } catch (err) {
