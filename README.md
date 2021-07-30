@@ -22,12 +22,12 @@ the backend functionality of the App.
 
 ## FOLDERS
 
-### -CONFIG
+### CONFIG
 In this folder there's a **config.js** file where we set up our  cloud database (Mongo Atlas) using
 its mongoose driver
 
 
-### - Controllers
+###  Controllers
 
 1. User Controllers
 
@@ -102,56 +102,56 @@ its mongoose driver
 1. User Routes
      - signUp : http://localhost:5000/api/v1/user/signup
           - request type: **POST**
-            - Desc: allow Users to create an account with Firstname, lastName, email, password, avatar,
+            - Description: allow Users to create an account with Firstname, lastName, email, password, avatar,
                     businessName and phoneNo
 
      - signIn:  http://localhost:5000/api/v1/user/signin
           - request type: **POST**
-            - Desc: allow Users to log into their account with email and password
+            - Description: allow Users to log into their account with email and password
 
     - signOut:  http://localhost:5000/api/v1/user/signout
          - request type: **GET**
-           - Desc: allow Users to logout of their account 
+           - Description: allow Users to logout of their account 
 
     - updateInfo:  http://localhost:5000/api/v1/user/updateinfo/:id
          - request type: **PUT**
-           - Desc: allow Users to update their account info, upload a profile photo (avatar), 
-                    **:id** is to be replaced with the User's account **ID**
+           - Description: allow Users to update their account info, upload a profile photo (avatar), 
+                            **:id** is to be replaced with the User's account **ID**
     
     - changePassword: http://localhost:5000/api/v1/user/changepassword/:id
          - request type: **PUT**
-           - Desc: allow Users to change their account password by providing a newPassword, 
-                    **:id** is to be replaced with the User's account **ID**
+           - Description: allow Users to change their account password by providing a newPassword, 
+                            **:id** is to be replaced with the User's account **ID**
 
     - deleteAccount:  http://localhost:5000/api/v1/user/deleteaccount/:id
          - request type: **DELETE**
-           - Desc: allow Users to delete their account details from the database, 
-                    **:id** is to be replaced with the User's account **ID**
+           - Description: allow Users to delete their account details from the database, 
+                            **:id** is to be replaced with the User's account **ID**
 
 2. Product Routes
     - createProduct : http://localhost:5000//api/user/products/
          - request type: **POST**
-           - Desc: allow Users to create a product with name, desc, price, noInStock, productImage,
-                    and category. This product is stored in the specific user's account that posted it.
+           - Description: allow Users to create a product with name, desc, price, noInStock, productImage,
+                            and category. This product is stored in the specific user's account that posted it.
 
     - getUserProducts : http://localhost:5000//api/user/products/userproducts
          - request type: **GET**
-           - Desc: allow Users to fetch all their products from the database. 
+           - Description: allow Users to fetch all their products from the database. 
 
     - getSingleProduct:  http://localhost:5000//api/user/products/:id
          - request type: **GET**
-           - Desc: allow Users to fetch a specific product from all their products in the database, 
-                    **:id** is to be replaced with the Product's **ID**
+           - Description: allow Users to fetch a specific product from all their products in the database, 
+                            **:id** is to be replaced with the Product's **ID**
 
     - updateProduct:  http://localhost:5000//api/user/products/:id
           - request type: **PUT**
-            - Desc: allow Users to update their product details in the database, and also change the 
-                    product image. **:id** is to be replaced with the Product's **ID**
+            - Description: allow Users to update their product details in the database, and also change the 
+                            product image. **:id** is to be replaced with the Product's **ID**
 
     - deleteProduct:  http://localhost:5000//api/user/products/:id
           - request type: **DELETE**
-            - Desc: allow Users to delete their product details from the database, and also change.
-                    **:id** is to be    replaced with the Product's **ID**
+            - Description: allow Users to delete their product details from the database, and also change.
+                            **:id** is to be    replaced with the Product's **ID**
 
 
 ### Uploads
