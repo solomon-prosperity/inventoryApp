@@ -1,4 +1,4 @@
-# inventory Management App
+# Inventory Management App
 
 ##  Overview 
 
@@ -89,6 +89,8 @@ its mongoose driver
 
 - express.static(): App level middleware to make our image upload folders readable by users
 
+- express.Router(): Router level middleware for routing.
+
 
 ### Models
 
@@ -106,39 +108,39 @@ its mongoose driver
      - signIn:  http://localhost:5000/api/v1/user/signin
           - request type: **POST**
             - Desc: allow Users to log into their account with email and password
-    
-    - signout:  http://localhost:5000/api/v1/user/signout
-          - request type: **GET**
-            - Desc: allow Users to logout of their account 
+
+    - signOut:  http://localhost:5000/api/v1/user/signout
+         - request type: **GET**
+           - Desc: allow Users to logout of their account 
 
     - updateInfo:  http://localhost:5000/api/v1/user/updateinfo/:id
-          - request type: **PUT**
-            - Desc: allow Users to update their account info, upload a profile photo (avatar), 
+         - request type: **PUT**
+           - Desc: allow Users to update their account info, upload a profile photo (avatar), 
                     **:id** is to be replaced with the User's account **ID**
     
     - changePassword: http://localhost:5000/api/v1/user/changepassword/:id
-          - request type: **PUT**
-            - Desc: allow Users to change their account password by providing a newPassword, 
+         - request type: **PUT**
+           - Desc: allow Users to change their account password by providing a newPassword, 
                     **:id** is to be replaced with the User's account **ID**
 
     - deleteAccount:  http://localhost:5000/api/v1/user/deleteaccount/:id
-          - request type: **DELETE**
-            - Desc: allow Users to delete their account details from the database, 
+         - request type: **DELETE**
+           - Desc: allow Users to delete their account details from the database, 
                     **:id** is to be replaced with the User's account **ID**
 
 2. Product Routes
     - createProduct : http://localhost:5000//api/user/products/
-          - request type: **POST**
-            - Desc: allow Users to create a product with name, desc, price, noInStock, productImage,
+         - request type: **POST**
+           - Desc: allow Users to create a product with name, desc, price, noInStock, productImage,
                     and category. This product is stored in the specific user's account that posted it.
 
     - getUserProducts : http://localhost:5000//api/user/products/userproducts
-          - request type: **GET**
-            - Desc: allow Users to fetch all their products from the database. 
+         - request type: **GET**
+           - Desc: allow Users to fetch all their products from the database. 
 
     - getSingleProduct:  http://localhost:5000//api/user/products/:id
-          - request type: **GET**
-            - Desc: allow Users to fetch a specific product from all their products in the database, 
+         - request type: **GET**
+           - Desc: allow Users to fetch a specific product from all their products in the database, 
                     **:id** is to be replaced with the Product's **ID**
 
     - updateProduct:  http://localhost:5000//api/user/products/:id
@@ -178,20 +180,20 @@ its mongoose driver
 ## Testing
 
  **POSTMAN:** User and Product details for account creation and product creation respectively can be entered
-              using the **Form-Data** field of postman. Data from the **Form-Data** field is parsed by **Multer**
+            using the **Form-Data** field of postman. Data from the **Form-Data** field is parsed by **Multer**
 
 
 ## Dependecies
 
 
-**bcrypt:** encrypts user's passwords
-**cookie-parser:** stores user's token
-**dotenv:** for environment variables
-**express:** server setup, middlewares e.t.c
-**joi:** data validation
-**jsonwebtoken:** generates token
-**mongoose:** MongoDB driver
-**multer:** image upload and form data parser
+- **bcrypt:** encrypts user's passwords
+- **cookie-parser:** stores user's token
+- **dotenv:** for environment variables
+- **express:** server setup, middlewares e.t.c
+- **joi:** data validation
+- **jsonwebtoken:** generates token
+- **mongoose:** MongoDB driver
+- **multer:** image upload and form data parser
 
 
 ## Contributors
