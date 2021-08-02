@@ -28,8 +28,7 @@ const productSchema = new mongoose.Schema({
 
     } ,
     productImage: {
-        type: String ,
-        required: true  
+        type: String 
 
     } ,
     user: {
