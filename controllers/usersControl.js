@@ -29,8 +29,16 @@ const signUp = async (req , res) => {
 
 
 // saving user details to database and returning saved details except password
-    const user = new User({ ...req.body , 
-        password: hashedPassword , avatar: image})
+    const user = new User({
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        businessName: req.body.businessName,
+        email: req.body.email,
+        phoneNo: req.body.phoneNo,
+        avatar: req.body.avatar , 
+        password: hashedPassword , 
+        avatar: image
+    })
     try {
             const savedUser = await user.save();
              res.status(200).json({
