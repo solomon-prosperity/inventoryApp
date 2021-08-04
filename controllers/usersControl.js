@@ -95,6 +95,10 @@ const updateInfo = async (req , res ) => {
     let userid= req.user._id
     if (userid !== req.params.id) return res.status(400).json({ success: false , msg: `you cannot update this user's info`})
 
+    const image = req.file == undefined ? 'No Image Uploaded' :
+    `http://localhost:5000/productImage/${req.file.filename}`
+
+
 // finding and updating user info and also returning updated user info
     try {
     const user = await User.findOneAndUpdate({_id:req.params.id },
@@ -110,7 +114,7 @@ const updateInfo = async (req , res ) => {
             businessName: updatedUser.businessName,
             email: updatedUser.email,
             phoneNo: updatedUser.phoneNo,
-            avatar: `http://localhost:5000/avatar/${req.file.filename}`
+            avatar: image
         }
         })
     } catch (err) {
