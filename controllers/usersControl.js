@@ -23,9 +23,13 @@ const signUp = async (req , res) => {
 // hashing password
     const hashedPassword= await bcrypt.hash(req.body.password , 12)
 
+    const image = req.file == undefined ? 'No Image Uploaded' :
+    `http://localhost:5000/productImage/${req.file.filename}`
+
+
 // saving user details to database and returning saved details except password
     const user = new User({ ...req.body , 
-        password: hashedPassword , avatar: `http://localhost:5000/avatar/${req.file.filename}`})
+        password: hashedPassword , avatar: image})
     try {
             const savedUser = await user.save();
              res.status(200).json({

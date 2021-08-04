@@ -7,10 +7,13 @@ const createProduct = async (req , res) => {
     const {error} = productValidation(req.body)
     if (error) return res.status(400).send(error.details[0].message)
 
+    const image = req.file == undefined ? 'No Image Uploaded' :
+    `http://localhost:5000/productImage/${req.file.filename}`
+
 // saving new product to database and returning the saved product details
     const product = new Product({...req.body , 
         user: req.user._id , 
-        productImage: `http://localhost:5000/productImage/${req.file.filename}`})
+        productImage: image})
     try {
           const savedProduct = await product.save();
            res.status(200).json({
