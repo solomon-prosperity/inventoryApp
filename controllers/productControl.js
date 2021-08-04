@@ -66,11 +66,14 @@ const getSingleProduct = async (req ,res) => {
 // updateProduct allows signed in user to update their product details in the database
 const updateProduct = async (req , res) => {
     let userid = req.user._id
+    const image = req.file == undefined ? 'No Image Uploaded' :
+    `http://localhost:5000/productImage/${req.file.filename}`
+
 
     try {
         const product = await Product.findOneAndUpdate({user: userid , _id: req.params.id},
             {...req.body ,
-             productImage: `http://localhost:5000/productImage/${req.file.filename}`} , 
+             productImage: image} , 
             {new: true})
             if (!product) return res.status(400).json({ success: false , msg: `product not found`})
             const updatedProduct = await product.save()
