@@ -3,7 +3,8 @@ const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 const {
     signUpValidation,
-    signInValidation
+    signInValidation,
+    changePasswordValidation
 } = require('../validations/Uservalidation')
 
 const signUp = async (req , res) => {
@@ -122,7 +123,8 @@ const updateInfo = async (req , res ) => {
     }
  }
 
-const changePassword = async (req , res) => {
+ const changePassword = async (req , res) => {
+    const {oldPassword , newPassword} = req.body
 
 /* checking if the logged in user is actually the one trying to change password, to prevent other users who may have access
  to another user's ID from changing password */
@@ -130,18 +132,32 @@ const changePassword = async (req , res) => {
     let userid = req.user._id
     if (userid !== req.params.id ) return res.status(400).json({ success: false , msg: `you cannot change this user's password`})
 
+//  validating user input
+    const {error} = changePasswordValidation(req.body)
+    if (error) return res.status(400).send(error.details[0].message)
+
+    
 // finding and changing user password and also hashing new password 
+
     try {
-    const hashedPassword = await bcrypt.hash(req.body.newPassword , 12);
-    const user = await User.findOneAndUpdate({_id: req.params.id},
-        {password: hashedPassword} , {new: true})
-        await user.save();
+
+    let user = await User.findOne({_id: req.params.id}); // finding user by id
+    
+    const validPassword = await bcrypt.compare(oldPassword , user.password) // comparing oldPassword with current password in our database
+    if (!validPassword) return res.status(404).json(`your old password is incorrect`)
+
+    const hashNewPassword = await bcrypt.hash(newPassword , 12); // hashing new password
+
+    user.password = hashNewPassword; // changing password to newPassword
+    
+    await user.save();
     res.status(200).json({
         success: true , 
         msg: `your password was successfully changed!` , 
     })
     } catch (err) {
-        res.status(400).send(err)
+        res.status(400).send(err);
+        console.log(err)
     }
     
 }

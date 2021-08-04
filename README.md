@@ -120,8 +120,8 @@ its mongoose driver
     
     - changePassword: http://localhost:5000/api/v1/user/changepassword/:id
          - request type: **PUT**
-           - Description: allow Users to change their account password by providing a newPassword, 
-                            **:id** is to be replaced with the User's account **ID**
+           - Description: allow Users to change their account password by providing their oldPassword
+                          and a newPassword, **:id** is to be replaced with the User's account **ID**
 
     - deleteAccount:  http://localhost:5000/api/v1/user/deleteaccount/:id
          - request type: **DELETE**

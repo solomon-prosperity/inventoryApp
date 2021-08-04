@@ -21,8 +21,19 @@ const signInValidation = (user) => {
             return schema.validate(user);
         }
 
+
+const changePasswordValidation = (user) => {
+        const schema = Joi.object({
+            newPassword: Joi.string().min(6).required() ,
+            oldPassword: Joi.string().min(6).required() 
+        }).unknown();
+            return schema.validate(user);
+        }
+        
+
     
 module.exports = {
     signUpValidation,
-    signInValidation
+    signInValidation,
+    changePasswordValidation
 }
