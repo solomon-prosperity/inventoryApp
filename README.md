@@ -5,6 +5,8 @@
 This App is intended to serve as an inventory management application for a store. The codes here powers
 the backend functionality of the App. 
 
+**Note: You can find the official postman documentation [HERE](https://documenter.getpostman.com/view/16946617/TzshGkDP)**
+
 ### What's possible?
 
 1. Users can register an account through the signup route 
